@@ -18,12 +18,13 @@ const App = () => {
 		},
 	];
 	const [tareas, setTareas] = useState(dataInitial);
+	const [showTasks, setShowTasks] = useState(false);
 
 	return (
 		<div className='contenedor'>
-			<Header />
+			<Header showTasks={showTasks} setShowTasks={setShowTasks} />
 			<FormTask tareas={tareas} setTareas={setTareas} />
-			<ListTareas tareas={tareas} setTareas={setTareas} />
+			<ListTareas tareas={tareas} setTareas={setTareas} showTasks={showTasks} />
 		</div>
 	);
 };
