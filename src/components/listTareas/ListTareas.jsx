@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import Task from './Task';
 
-const ListTareas = ({ tareas, setTareas }) => {
+const ListTareas = ({ tareas, setTareas, showTasks }) => {
 	/**
 	 * A function that is called when the user clicks on the checkbox
 	 * @param {id} id this is the id of the task
@@ -45,44 +45,58 @@ const ListTareas = ({ tareas, setTareas }) => {
 	 * @param {id} id id of the task
 	 */
 	const deleteTask = (id) => {
-		const filtrados = tareas.filter((task) => task.id !== id);
-		setTareas(filtrados);
+		const filterTask = tareas.filter((task) => task.id !== id);
+		setTareas(filterTask);
 	};
 
 	return (
-		<div>
-			<ul className='lista-tareas'>
-				{tareas.length > 0 ? (
-					tareas.map((task) => (
-						<Task
-							key={task.id}
-							task={task}
-							handleCompletedTask={handleCompletedTask}
-							updateTask={updateTask}
-							deleteTask={deleteTask}
-						/>
-					))
-				) : (
-					<div className='lista-tareas__mensaje'>
-						<FontAwesomeIcon
-							icon={faBookmark}
-							className='lista-tareas__icono-task'
-						/>
-						No hay tareas
-						<FontAwesomeIcon
-							icon={faBookmark}
-							className='lista-tareas__icono-task'
-						/>
-					</div>
-				)}
-			</ul>
-		</div>
+		<ul className='lista-tareas'>
+			{tareas.length > 0 ? (
+				tareas.map((task) => {
+					if (showTasks) {
+						return (
+							<Task
+								key={task.id}
+								task={task}
+								handleCompletedTask={handleCompletedTask}
+								updateTask={updateTask}
+								deleteTask={deleteTask}
+							/>
+						);
+					} else if (!task.completada) {
+						return (
+							<Task
+								key={task.id}
+								task={task}
+								handleCompletedTask={handleCompletedTask}
+								updateTask={updateTask}
+								deleteTask={deleteTask}
+							/>
+						);
+					}
+					return '';
+				})
+			) : (
+				<div className='lista-tareas__mensaje'>
+					<FontAwesomeIcon
+						icon={faBookmark}
+						className='lista-tareas__icono-task'
+					/>
+					No hay tareas
+					<FontAwesomeIcon
+						icon={faBookmark}
+						className='lista-tareas__icono-task'
+					/>
+				</div>
+			)}
+		</ul>
 	);
 };
 
 ListTareas.propTypes = {
 	tareas: PropTypes.array.isRequired,
 	setTareas: PropTypes.func.isRequired,
+	showTasks: PropTypes.bool.isRequired,
 };
 
 export default ListTareas;
