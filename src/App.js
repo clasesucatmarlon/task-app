@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './assets/css/App.css';
 import FormTask from './components/formTasks/FormTask';
 import Header from './components/header/Header';
+import ListTareas from './components/listTareas/ListTareas';
 
 const App = () => {
 	const dataInitial = [
@@ -13,7 +14,7 @@ const App = () => {
 		{
 			id: 2,
 			texto: 'Hacer comida',
-			completada: false,
+			completada: true,
 		},
 	];
 	const [tareas, setTareas] = useState(dataInitial);
@@ -22,6 +23,7 @@ const App = () => {
 		<div className='contenedor'>
 			<Header />
 			<FormTask tareas={tareas} setTareas={setTareas} />
+			<ListTareas tareas={tareas} setTareas={setTareas} />
 		</div>
 	);
 };
