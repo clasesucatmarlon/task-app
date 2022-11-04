@@ -8,7 +8,7 @@ import {
 	faTrashCan,
 } from '@fortawesome/free-solid-svg-icons';
 
-const Task = ({ task, handleCompletedTask }) => {
+const Task = ({ task, handleCompletedTask, updateTask, deleteTask }) => {
 	const [editTask, setEditTask] = useState(false);
 	const [newStateTask, setNewStateTask] = useState(task.texto);
 
@@ -16,9 +16,11 @@ const Task = ({ task, handleCompletedTask }) => {
 	 * The handleSubmit function is called when the user clicks the submit button. It prevents the
 	 * default action of the submit button, which is to refresh the page, and then it sets the editTask
 	 * state to false
+	 * @param {event} event
 	 */
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		updateTask(task.id, newStateTask);
 		setEditTask(false);
 	};
 
@@ -55,6 +57,7 @@ const Task = ({ task, handleCompletedTask }) => {
 				<FontAwesomeIcon
 					icon={faTrashCan}
 					className='lista-tareas__icono lista-tareas__icono-accion'
+					onClick={() => deleteTask(task.id)}
 				/>
 			</div>
 		</li>
@@ -64,6 +67,8 @@ const Task = ({ task, handleCompletedTask }) => {
 Task.propTypes = {
 	task: PropTypes.object.isRequired,
 	handleCompletedTask: PropTypes.func.isRequired,
+	updateTask: PropTypes.func.isRequired,
+	deleteTask: PropTypes.func.isRequired,
 };
 
 export default Task;

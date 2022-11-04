@@ -5,15 +5,48 @@ import { faBookmark } from '@fortawesome/free-solid-svg-icons';
 import Task from './Task';
 
 const ListTareas = ({ tareas, setTareas }) => {
+	/**
+	 * A function that is called when the user clicks on the checkbox
+	 * @param {id} id this is the id of the task
+	 * @return modified completada properties of the object
+	 */
 	const handleCompletedTask = (id) => {
 		setTareas(
-			tareas.map((tasks) => {
-				if (tasks.id === id) {
-					return { ...tasks, completada: !tasks.completada };
+			tareas.map((task) => {
+				if (task.id === id) {
+					return { ...task, completada: !task.completada };
 				}
-				return tasks;
+				return task;
 			})
 		);
+	};
+
+	/**
+	 * A function that is called when the user clicks on the update button
+	 * If the task id matches the id passed in, return a new object with the same properties as the task,
+	 * but with the texto property set to the newStateTask.
+	 * @param {id} id id of the task
+	 * @param {newStateTask} newStateTask new value to property texto of the object
+	 * @return The newTask object will have the new value
+	 */
+	const updateTask = (id, newStateTask) => {
+		setTareas(
+			tareas.map((task) => {
+				if (task.id === id) {
+					return { ...task, texto: newStateTask };
+				}
+				return task;
+			})
+		);
+	};
+
+	/**
+	 * Delete the task with the given id from the list of tasks
+	 * @param {id} id id of the task
+	 */
+	const deleteTask = (id) => {
+		const filtrados = tareas.filter((task) => task.id !== id);
+		setTareas(filtrados);
 	};
 
 	return (
@@ -25,6 +58,8 @@ const ListTareas = ({ tareas, setTareas }) => {
 							key={task.id}
 							task={task}
 							handleCompletedTask={handleCompletedTask}
+							updateTask={updateTask}
+							deleteTask={deleteTask}
 						/>
 					))
 				) : (
