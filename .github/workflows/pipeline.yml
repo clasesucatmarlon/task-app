@@ -2,9 +2,10 @@ name: Deploy Pipeline
 
 on:
   push:
-    branches:
-      - main
-      - feature_08
+    branches: [main]
+  pull_request:
+    branches: [main]
+    types: [opened, synchronize]
 
 jobs:
   deploy:
