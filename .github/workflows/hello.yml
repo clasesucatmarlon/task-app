@@ -12,3 +12,9 @@ jobs:
       - name: Echo the messaje
         run:
           echo "Hola mundo!!!"
+      - name: Dime la fecha
+        run:
+          date
+      - name: Mostrar contenido
+        run:
+          ls -l
