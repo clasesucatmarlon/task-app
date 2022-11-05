@@ -1,4 +1,4 @@
-[![Deploy Pipeline](https://github.com/clasesucatmarlon/task-app/actions/workflows/pipeline.yml/badge.svg?branch=feature_08)](https://github.com/clasesucatmarlon/task-app/actions/workflows/pipeline.yml)
+[![Deploy Pipeline](https://github.com/clasesucatmarlon/task-app/actions/workflows/pipeline.yml/badge.svg)](https://github.com/clasesucatmarlon/task-app/actions/workflows/pipeline.yml)
 
 # Getting Started with Create React App
 
