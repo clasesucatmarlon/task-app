@@ -1,0 +1,23 @@
+name: Deploy Pipeline
+
+on:
+  push:
+    branches:
+      - feature_08
+
+jobs:
+  deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: npm Install
+      - name: Execute format
+        run: npm run format
+      - name: Execute Eslint - lint
+        run: npm run lint
