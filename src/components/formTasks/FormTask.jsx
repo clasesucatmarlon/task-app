@@ -23,6 +23,7 @@ const FormTask = ({ tareas, setTareas }) => {
 				completada: false,
 			},
 		]);
+		setInputTarea('');
 	};
 
 	/**

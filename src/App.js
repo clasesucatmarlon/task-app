@@ -1,24 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './assets/css/App.css';
 import FormTask from './components/formTasks/FormTask';
 import Header from './components/header/Header';
 import ListTareas from './components/listTareas/ListTareas';
 
 const App = () => {
-	const dataInitial = [
-		{
-			id: 1,
-			texto: 'Lavar ropa',
-			completada: false,
-		},
-		{
-			id: 2,
-			texto: 'Hacer comida',
-			completada: true,
-		},
-	];
-	const [tareas, setTareas] = useState(dataInitial);
+	const items = localStorage.getItem('dataTasks');
+	const data = items ? JSON.parse(items) : [];
+
+	const [tareas, setTareas] = useState(data);
 	const [showTasks, setShowTasks] = useState(false);
+
+	/**
+	 * Saving the data in the local storage 
+	 */
+	useEffect(() => {
+		localStorage.setItem('dataTasks', JSON.stringify(tareas));
+	}, [tareas]);
 
 	return (
 		<div className='contenedor'>
