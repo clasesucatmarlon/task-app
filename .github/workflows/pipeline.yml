@@ -3,6 +3,7 @@ name: Deploy Pipeline
 on:
   push:
     branches:
+      - main
       - feature_08
 
 jobs:
