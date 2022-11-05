@@ -18,8 +18,6 @@ const App = () => {
 		localStorage.setItem('dataTasks', JSON.stringify(tareas));
 	}, [tareas]);
 
-	const a = 10;
-
 	return (
 		<div className='contenedor'>
 			<Header showTasks={showTasks} setShowTasks={setShowTasks} />
