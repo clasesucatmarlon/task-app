@@ -17,7 +17,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: Install dependencies
+      - name: Install dependencies to project
         run: npm install --no-audit --no-fund --no-optional
       - name: Execute format
         run: npm run format
