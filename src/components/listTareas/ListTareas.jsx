@@ -82,7 +82,7 @@ const ListTareas = ({ tareas, setTareas, showTasks }) => {
 						icon={faBookmark}
 						className='lista-tareas__icono-task'
 					/>
-					No hay tareas
+					No hay tareas - Agregue una nueva tarea
 					<FontAwesomeIcon
 						icon={faBookmark}
 						className='lista-tareas__icono-task'
